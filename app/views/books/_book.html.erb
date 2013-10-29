@@ -1,0 +1,10 @@
+<div style="margin:3em;">
+  Name: <%= book.name %><br />
+  <p>Description:
+  <%= book.description.blank? ? 'None' : book.description %></p>
+  Available: <%= book.available? ? 'Yes' : 'No' %>
+
+  <div style="float:right;">
+    <%= link_to 'Checkout', :action => :checkout, :id => book.id %>
+  </div>
+</div>
