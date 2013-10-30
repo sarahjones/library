@@ -9,3 +9,10 @@ development:
   database: library_demo
   pool: 5
   timeout: 5000
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: library_demo
+  pool: 5
+  timeout: 5000

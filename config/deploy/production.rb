@@ -6,12 +6,16 @@ set :stage, :production
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
 
-#need to pass in -s server_name=something -s key_path=somepath
+set :rvm_type, :user
+set :rvm_ruby_version, '2.0.0-p247'
+
+
+set :server_name, %w{ec2-54-204-248-74.compute-1.amazonaws.com}
 
 #role :app, fetch(:server_name) 
 #role :web, fetch(:server_name) 
 #role :db, fetch(:server_name)
-role :all, %{ec2-54-237-25-99.compute-1.amazonaws.com}
+role :all, fetch(:server_name)
 
 # Extended Server Syntax
 # ======================
@@ -26,7 +30,8 @@ role :all, %{ec2-54-237-25-99.compute-1.amazonaws.com}
 # you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
 # set it globally
 set :ssh_options, {
-    keys: fetch(:key_path), 
+    user: %{ubuntu},
+    keys: %w{/Users/sarahjones/.ssh/sarah-test1.pem}, 
     forward_agent: true,
     auth_methods: %w(publickey)
 }
