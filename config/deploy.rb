@@ -1,25 +1,24 @@
-#require 'bundler/capistrano' # automatically run bundle install on remote server when running `cap deploy`
-
 set :application, 'library'
 set :repo_url, 'git@github.com:sarahjones/library.git'
-set :scm, :git
 
-ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/home/ubuntu'
 set :user, %{ubuntu}
 set :use_sudo, false
+set :latest_release_directory, File.join(fetch(:deploy_to), 'current')
 
 # set :format, :pretty
 set :log_level, :debug
 # set :pty, true
 
 # set :linked_files, %w{config/database.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-#set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
+
+set :normalize_asset_timestamps, %{public/images public/javascripts public/stylesheets}
 
 namespace :deploy do
 

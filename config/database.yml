@@ -13,6 +13,6 @@ development:
 production:
   adapter: mysql2
   encoding: utf8
-  database: library_demo
+  database: library_prod
   pool: 5
   timeout: 5000
