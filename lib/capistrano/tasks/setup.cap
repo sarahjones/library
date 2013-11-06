@@ -3,12 +3,17 @@ namespace :setup do
     desc 'Create database'
     task :create do
       on roles(:db) do
-        within fetch(:latest_release_directory) do
-	  execute :rake, "db:create"
+        within release_path do
+          ask(:create_db, "Create db?  y/n")
+          if fetch(:create_db) == 'y'
+	    execute :rake, "db:create"
+          end
         end
       end
     end	
     before :create, 'rvm:hook'
     before :create, 'bundler:install'
+
+    before 'deploy:assets:precompile', 'setup:db:create'
   end
 end
