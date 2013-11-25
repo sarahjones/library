@@ -1,0 +1,11 @@
+http://funkload.nuxeo.org/tutorial.html
+
+# Make sure it works
+fl-run-test -dv test_Simple.py
+
+
+# Run the load test
+fl-run-bench test_Simple.py Simple.test_simple
+
+# View the results (after scping them back to your machine)
+fl-build-report --html simple-bench.xml
